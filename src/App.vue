@@ -13,12 +13,16 @@
 <script>
   import 'normalize.css'
   import './assets/reset.scss'
+  import store from './store/index'
   import Topbar from './components/Topbar'
   import ResumeEditor from './components/ResumeEditor'
   import ResumePreview from './components/ResumePreview'
 
+
+
 export default {
   name: 'App',
+  store,
   components: {
     Topbar,ResumeEditor,ResumePreview
   }
@@ -43,7 +47,7 @@ export default {
       width: 100%;
       align-self: center;
       #resumeEditor{
-        width: 35%;
+        min-width: 35%;
         background: #444;
       }
       #resumePreview{
