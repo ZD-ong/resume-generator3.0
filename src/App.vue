@@ -1,4 +1,5 @@
 <template>
+  <div>
     <div class=page>
       <header id="topbar">
         <Topbar/>
@@ -8,12 +9,15 @@
         <ResumePreview id="resumePreview"/>
       </main>
     </div>
+  </div>
 </template>
 
 <script>
   import 'normalize.css'
   import './assets/reset.scss'
   import store from './store/index'
+  import AV from './lib/leancloud'
+  import getAVUser from './lib/getAVUser'
   import Topbar from './components/Topbar'
   import ResumeEditor from './components/ResumeEditor'
   import ResumePreview from './components/ResumePreview'
@@ -25,6 +29,9 @@ export default {
   store,
   components: {
     Topbar,ResumeEditor,ResumePreview
+  },
+  created(){
+    this.$store.commit('setUser',getAVUser())
   }
 }
 </script>

@@ -1,11 +1,16 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import objectPath from 'object-path'
 
 Vue.use(Vuex)
 
   export default new Vuex.Store({
     state: {
       selected: 'profile',
+      user: {
+        id: '',
+        username: ''
+      },
       resume: {
         config: [
           { field: 'profile', icon: 'profile' },
@@ -17,7 +22,7 @@ Vue.use(Vuex)
           { field: 'social', icon: 'twitter' }
         ],
         profile: {
-          name: '方某某',
+          name: '',
           city: '大城市铁岭',
           age: '',
           phone: '',
@@ -58,8 +63,17 @@ Vue.use(Vuex)
       }
     },
   mutations: {
-      switchTab(state, payload){
-          state.selected = payload
-        }
+    switchTab(state, payload){
+      state.selected = payload
+    },
+    updateResume(state, {path, value}){
+      objectPath.set(state.resume, path, value)
+    },
+    setUser(state,payload){
+      Object.assign(state.user,payload)
+    },
+    removeUser(state){
+      state.user.id = ''
     }
+  }
 })
